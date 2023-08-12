@@ -1,0 +1,43 @@
+Rush 01 Programe and Algo Note
+
+The folder is organised with 6 files which should be compiled together. The "main" file is where the code is executed from, with the remaining 6 files holding numerous functions that are used during the programe execution.
+
+The "main" file together with "check_case" and "check_double" are where the key algo sits, in terms of resolving the Classic Skyscraper puzzle.
+
+The "main" file has 2 main segments:
+
+1. Main - it establish the "grid" array which is the solution, by creating an array, malloc memory to it.  Next, it extracts the "view" string into an array named as "view" from the arguments on the command line.
+
+It then launches into the "solve" function which generates the result required of the program, and finish by printing the array or generate an "Error" message if that is not possible. Finally, it frees up all the memory used, especifically by "grid" and "view".
+
+2. Solve - this is a function which is recursive in nature that go sequentially to the 16 possible positions of the 4*4 grid, from position 0 - 16, starting from position 0, and invoking itself by passing position + 1. It stops at position 16, by returning (1), hence this condition check is set at the beginning of the function.  To start this function from main, position 0 is passed as the starting position.
+
+The Algorithm
+
+Once the "solve" function is invoked with position 0, it launches into a recursive loops from position 0 and iterating to position 16, and loop through the following functions:
+
+1. It starts by invoking the check_double function.  This function basically tries to place 1 to 4 (height of the tower) in its present position.  It does this by iterating through the height 1 to 4, and at each step check along the its column to the top and then the row to the left (which would have all been filled) to get the first value that it can place without conflict.  
+
+2, Once a value is placed, it then launches into checking against the value from the 4 different views starting with rowleft, rowright, coldown and finally colup (the "view checks").
+
+- If all are acceptable, it will then move to the next position by invoking itself with the next position.
+
+- If it fails, then it revert the value to "0" for that position and goes back to check to place to place the next higher height in its position again (ie. back to step 1 but at the next height).
+
+3. For the  "view check", this is not done at every position (because it is not useful), the checks are done only when it has placed the entire row (ie, at col 3 or when pos % 4 == 3) for the rowright and rowleft checks, or when pos had reached the full column (ie, at row 3 or when pos / 4 == 3) for the colup and coldown checks.
+
+- As such, rowleft and rowright are checked at pos 3, 7, 11 and 15.  Colup and Coldown are checked when pos are at 12, 13, 14 and 15. 
+
+- the row checks are done by counting for successive higher heights, and then comparing against the value of the view in that direction. If the check fails, then the view check fails. (going to step 2--.
+
+4. Given these checks and reverting to '0' and increasing to the next height, it is possible that at the given position after going through all the heights, it will fail the view test.  A this point, the function at the given position will return (0), ie. no solution, and revert back to the previous position (BACKTRACKING) and to check for successive heights again.  And if this also fails, it can revert back yet to a position further back after reverting the height of its position to "0".
+
+5. If at a higher height it can place an acceptable number, it moves forward again via the recursive function at the next position.
+
+6. Eventually, it should find a viable solution if the views info are correct.  However, if the views info is not correct, it will not be able to come to a solution and a "Error" message will hence be generated.
+
+7. The algorithm is a brute force approach and will take a long time to execute if the matrix is large.  Some possible ways to reduce the iterations, will be to check the validity of the views info early in the program. For example, a view of 4 must always be a view of 1 from the other directions.  And a view of 3 from one side, will never have a view of 3 or more from the other side.
+
+
+
+
