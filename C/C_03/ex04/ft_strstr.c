@@ -14,37 +14,37 @@
 
 char	*ft_strstr(char *str, char *to_find)
 {
-	int		s;
-	int		f;
-	char	*ptr;
+	char	*s;
+	char	*t;
 
-	s = 0;
-	f = 0;
-	if (to_find[f] == '\0')
-		return (str);
-	while (str[s] != '\0')
+	while (*to_find == '\0')
 	{
-		if (str[s] == to_find[f])
-		{
-			ptr = str + s;
-			while (str[s] != '\0' && str[s] == to_find[f])
-			{
-				s++;
-				f++;
-				if (to_find[f] == '\0')
-					return (ptr);
-			}
-			f = 0;
-		}
-		s++;
+		return (str);
 	}
-	return (0);
+	while (*str != '\0')
+	{
+		s = str;
+		t = to_find;
+		while (*s != '\0' && *t != '\0' && *s == *t)
+		{
+			s++;
+			t++;
+		}
+		if (*t == '\0')
+		{
+			return (str);
+		}
+		str++;
+	}
+	return (NULL);
 }
 /*
+#include <stdio.h>
+
 int	main(void)
 {
 	char	*str = "Destination of the source string";
-	char	*to_find = "";
+	char	*to_find = "nation";
 	
 	printf("src: %s\nfind: %s\n", str, to_find);
 	printf("result: %s\n", ft_strstr(str, to_find));
