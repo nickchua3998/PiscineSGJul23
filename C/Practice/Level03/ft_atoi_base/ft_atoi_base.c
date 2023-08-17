@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hchua <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/31 11:44:33 by hchua             #+#    #+#             */
-/*   Updated: 2023/07/31 11:44:37 by hchua            ###   ########.fr       */
+/*   Created: 2023/08/17 21:47:42 by hchua             #+#    #+#             */
+/*   Updated: 2023/08/17 21:47:45 by hchua            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar(char c)
+void	ft_strlen(char *str)
 {
-	write(1, &c, 1);
+	int	i;
+	
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return(i);
 }
 
-void	ft_putnbr(int nb)
+int	read_base(char c, char *base)
 {
-	unsigned int	n;
-
-	if (nb < 0)
+	int	i;
+	while (base[i] != '\0')
 	{
-		ft_putchar('-');
-		n = -nb;
+		if (base[i] == c)
+			return (i);
+		i++;
 	}
-	else
-		n = nb;
-	if (n >= 10)
-	{
-		ft_putnbr(n / 10);
-		n = n % 10;
-	}
-	ft_putchar(n + 48);
-}		
-
-int	main(void)
-{
-	ft_putnbr(-2147483648);
 }
 
+int	ft_atoi_base(const char *str, int str_base)
+{
+
+
+
+
+}

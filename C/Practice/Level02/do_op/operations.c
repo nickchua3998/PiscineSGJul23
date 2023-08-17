@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hchua <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/31 11:44:33 by hchua             #+#    #+#             */
-/*   Updated: 2023/07/31 11:44:37 by hchua            ###   ########.fr       */
+/*   Created: 2023/08/17 20:17:54 by hchua             #+#    #+#             */
+/*   Updated: 2023/08/17 20:17:59 by hchua            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "ft.h"
 
-void	ft_putchar(char c)
+int	ft_add(int a, int b)
 {
-	write(1, &c, 1);
+	return (a + b);
 }
 
-void	ft_putnbr(int nb)
+int	ft_minus(int a, int b)
 {
-	unsigned int	n;
-
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		n = -nb;
-	}
-	else
-		n = nb;
-	if (n >= 10)
-	{
-		ft_putnbr(n / 10);
-		n = n % 10;
-	}
-	ft_putchar(n + 48);
-}		
-
-int	main(void)
-{
-	ft_putnbr(-2147483648);
+	return (a - b);
 }
 
+int	ft_mul(int a, int b)
+{
+	return (a * b);
+}
+
+int	ft_div(int a, int b)
+{
+	return (a / b);
+}
+
+int	ft_mod(int a, int b)
+{
+	return (a % b);
+}
